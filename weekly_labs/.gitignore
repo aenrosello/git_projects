@@ -6,6 +6,7 @@ assets/
 bin/
 gen/
 libs/
+.settings/
 
 # Logs and databases #
 ######################
