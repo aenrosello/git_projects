@@ -22,7 +22,7 @@ libs/
 *.exe
 *.o
 *.so
-
+.DS_STORE
 
 # Packages #
 ############
