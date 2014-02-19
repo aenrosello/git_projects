@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.util.Date;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
