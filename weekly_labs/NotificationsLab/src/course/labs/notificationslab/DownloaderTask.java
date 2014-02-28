@@ -184,7 +184,7 @@ public class DownloaderTask extends AsyncTask<String, Void, String[]> {
 							// Set the notification View's text to
 							// reflect whether or the download completed
 							// successfully
-							mContentView.setTextViewText(R.id.text, (getResultCode() == Activity.RESULT_OK?successMsg:failMsg));
+							mContentView.setTextViewText(R.id.text, (success?successMsg:failMsg));
 
 							
 							// Use the Notification.Builder class to
