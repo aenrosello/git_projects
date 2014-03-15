@@ -105,7 +105,7 @@ public class TimerRingService extends Service {
             Log.v("TimerRingService.play()");
         }
 
-        // TODO: Reuse mMediaPlayer instead of creating a new one and/or use
+        // Reuse mMediaPlayer instead of creating a new one and/or use
         // RingtoneManager.
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setOnErrorListener(new OnErrorListener() {

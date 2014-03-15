@@ -159,7 +159,7 @@ public class CountingTimerView extends View {
         if (hours ==0 && minutes == 0 && seconds == 0) {
             showNeg = false;
         }
-        // TODO: must build to account for localization
+        // must build to account for localization
         if (!showHundredths) {
             if (!neg && hundreds != 0) {
                 seconds++;

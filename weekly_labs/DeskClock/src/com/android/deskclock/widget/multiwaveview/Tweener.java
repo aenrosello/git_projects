@@ -70,9 +70,8 @@ class Tweener {
             Object value = vars[i+1];
 
             if ("simultaneousTween".equals(key)) {
-                // TODO
             } else if ("ease".equals(key)) {
-                interpolator = (TimeInterpolator) value; // TODO: multiple interpolators?
+                interpolator = (TimeInterpolator) value; // multiple interpolators?
             } else if ("onUpdate".equals(key) || "onUpdateListener".equals(key)) {
                 updateListener = (AnimatorUpdateListener) value;
             } else if ("onComplete".equals(key) || "onCompleteListener".equals(key)) {
@@ -80,7 +79,6 @@ class Tweener {
             } else if ("delay".equals(key)) {
                 delay = ((Number) value).longValue();
             } else if ("syncWith".equals(key)) {
-                // TODO
             } else if (value instanceof float[]) {
                 props.add(PropertyValuesHolder.ofFloat(key,
                         ((float[])value)[0], ((float[])value)[1]));
@@ -131,7 +129,7 @@ class Tweener {
     }
 
     Tweener from(Object object, long duration, Object... vars) {
-        // TODO:  for v of vars
+        // 		  for v of vars
         //            toVars[v] = object[v]
         //            object[v] = vars[v]
         return Tweener.to(object, duration, vars);

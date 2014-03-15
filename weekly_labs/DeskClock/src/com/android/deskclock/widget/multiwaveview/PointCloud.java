@@ -45,7 +45,7 @@ public class PointCloud {
 
     public class WaveManager {
         private float radius = 50;
-        private float width = 200.0f; // TODO: Make configurable
+        private float width = 200.0f; // Make configurable
         private float alpha = 0.0f;
         public void setRadius(float r) {
             radius = r;
@@ -118,7 +118,7 @@ public class PointCloud {
     public PointCloud(Drawable drawable) {
         mPaint = new Paint();
         mPaint.setFilterBitmap(true);
-        mPaint.setColor(Color.rgb(255, 255, 255)); // TODO: make configurable
+        mPaint.setColor(Color.rgb(255, 255, 255)); // make configurable
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
 

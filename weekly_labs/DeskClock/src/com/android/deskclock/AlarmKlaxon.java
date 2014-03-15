@@ -173,7 +173,7 @@ public class AlarmKlaxon extends Service {
                 }
             }
 
-            // TODO: Reuse mMediaPlayer instead of creating a new one and/or use
+            // Reuse mMediaPlayer instead of creating a new one and/or use
             // RingtoneManager.
             mMediaPlayer = new MediaPlayer();
             mMediaPlayer.setOnErrorListener(new OnErrorListener() {

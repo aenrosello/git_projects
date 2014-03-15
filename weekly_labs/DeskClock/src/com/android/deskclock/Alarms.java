@@ -248,7 +248,7 @@ public class Alarms {
             // Disable the snooze if we just changed the snoozed alarm. This
             // only does work if the snoozed alarm is the same as the given
             // alarm.
-            // TODO: disableSnoozeAlert should have a better name.
+            // disableSnoozeAlert should have a better name.
             disableSnoozeAlert(context, alarm.id);
 
             // Disable the snooze if this alarm fires before the snoozed alarm.
@@ -429,7 +429,7 @@ public class Alarms {
 
         Intent intent = new Intent(ALARM_ALERT_ACTION);
 
-        // XXX: This is a slight hack to avoid an exception in the remote
+        // This is a slight hack to avoid an exception in the remote
         // AlarmManagerService process. The AlarmManager adds extra data to
         // this Intent which causes it to inflate. Since the remote process
         // does not know about the Alarm class, it throws a

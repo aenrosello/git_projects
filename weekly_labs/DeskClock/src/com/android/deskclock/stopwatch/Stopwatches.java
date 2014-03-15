@@ -88,7 +88,7 @@ public class Stopwatches {
         if (hours > 99) {
             hours = 0;
         }
-        // TODO: must build to account for localization
+        // must build to account for localization
         String timeStr;
         if (hours >= 10) {
             timeStr = String.format("%02dh %02dm %02ds .%02d", hours, minutes,

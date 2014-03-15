@@ -178,7 +178,7 @@ public class TimerFragment extends DeskClockFragment
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TimerListItem v = new TimerListItem (mContext); // TODO: Need to recycle convertView.
+            TimerListItem v = new TimerListItem (mContext); // Need to recycle convertView.
 
             final TimerObj o = (TimerObj)getItem(position);
             o.mView = v;

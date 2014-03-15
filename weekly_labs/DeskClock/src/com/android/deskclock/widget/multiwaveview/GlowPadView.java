@@ -383,7 +383,7 @@ public class GlowPadView extends View {
                 break;
 
             case STATE_SNAP:
-                // TODO: Add transition states (see list_selector_background_transition.xml)
+                // Add transition states (see list_selector_background_transition.xml)
                 mHandleDrawable.setAlpha(0.0f);
                 showGlow(REVEAL_GLOW_DURATION , REVEAL_GLOW_DELAY, 0.0f, null);
                 break;
