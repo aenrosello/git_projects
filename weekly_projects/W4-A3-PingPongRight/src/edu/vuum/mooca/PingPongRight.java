@@ -150,11 +150,8 @@ public class PingPongRight {
         // TODO - replace the following line with a CountDownLatch
         // barrier synchronizer call that waits for both threads to
         // finish.
-        try{
-        	mLatch.await();
-        }catch(InterruptedException ex){
-        	ex.printStackTrace();
-        }
+        
+        mLatch.await();
         System.out.println(finishString);
     }
 
