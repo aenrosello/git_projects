@@ -1,7 +1,6 @@
 package edu.vuum.mooca;
 
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.Condition;
 
 /**
@@ -38,26 +37,25 @@ public class SimpleSemaphore {
         // making sure to allow both fair and non-fair Semaphore
         // semantics.
     	this.permits = permits;
-    	if(fair){
-    		this.lock = new ReentrantLock(fair);
-    		this.condition = lock.newCondition();
-    	} else{
-    		this.lock = new ReentrantLock();
-    		this.condition = lock.newCondition();
-    	}
+    	this.lock = new ReentrantLock(fair);
+    	this.condition = lock.newCondition();
+    	
     }
 
     /**
      * Acquire one permit from the semaphore in a manner that can be
      * interrupted.
      */
-    public void acquire() throws InterruptedException {
+    public void acquire() {
         // TODO - you fill in here.
-    	lock.lock();
     	try {
-    		if(this.permits > 0){
-    			this.permits--;
-    		}
+    		lock.lockInterruptibly();
+    		while (this.permits <= 0) {
+	    		this.condition.await();
+	    	}
+    		this.permits--;
+    	} catch(InterruptedException ex){
+    		ex.printStackTrace();
     	} finally {
     		lock.unlock();
     	}
@@ -69,20 +67,15 @@ public class SimpleSemaphore {
      */
 	public void acquireUninterruptibly() {
 		// TODO - you fill in here.
-		while (true) {
-			lock.lock();
-			if (permits > 0) {
-				this.permits--;
-				lock.unlock();
-				break;
-			}
-			lock.unlock();
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException ex) {
-				ex.printStackTrace();
-			}
-		}
+		lock.lock();
+    	try {
+    		while (this.permits <= 0) {
+	    		this.condition.awaitUninterruptibly();
+	    	}
+    		this.permits--;
+    	} finally {
+    		lock.unlock();
+    	}
 	}
 
     /**
