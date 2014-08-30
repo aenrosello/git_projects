@@ -1,6 +1,6 @@
 .metadata/
 RemoteSystemsTempFiles/
-.Trashes
+.Trashes/
 Thumbs.db
 assets/
 bin/
@@ -35,3 +35,4 @@ node_modules/
 *.rar
 *.tar
 *.zip
+*~
