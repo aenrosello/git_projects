@@ -1,0 +1,15 @@
+{
+    "name": "promiseTest",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "~4.8.7",
+        "mongodb": "~1.4.9",
+        "mocha": "~1.21.4",
+        "bluebird": "~2.3.2"
+    },
+    "scripts": {
+        "test": "mocha --reporter list  --timeout 60s"
+    },
+    "author": "aenrosello"
+}
