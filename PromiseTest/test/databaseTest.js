@@ -3,34 +3,47 @@
  */
 var assert = require('assert');
 var database = require('../data/database');
-
+var CollectionDriver = require('../data/collectionDriver').CollectionDriver;
+var collectionDriver;
 
 describe('Suite database', function () {
-    it('getOne', function (done) {
-        database.getOneAsync().then(function (data) {
-            console.log('success:' + JSON.stringify(data));
-            done();
+    it('getOnePrototype', function (done) {
+        database.getConnection().then(function (db) {
+            collectionDriver = new CollectionDriver(db);
+            collectionDriver.get('test', {x: 1}, {}).then(
+                function (data) {
+                    console.log('success:' + JSON.stringify(data));
+                    done();
+                }
+            ).catch(function (error) {
+                    console.log('fail 2: ' + JSON.stringify(error));
+                    done();
+                });
         }).catch(function (error) {
-            console.log('fail: ' + JSON.stringify(error));
+            console.log('fail 1: ' + JSON.stringify(error));
             done();
         });
     });
 
-    it('getAll', function (done) {
-        var options = {
-            sort: [
-                ['x', 'desc']
-            ]
-        };
-        database.getAllAsync(options).then(function (test) {
-            test.each(function (err, item) {
-                if (item === null) {
+    it('getAllPrototype', function (done) {
+        database.getConnection().then(function (db) {
+            collectionDriver = new CollectionDriver(db);
+            var options = {
+                sort: [
+                    ['x', 'desc']
+                ]
+            };
+            collectionDriver.findAll('test', options).then(
+                function (data) {
+                    console.log('success:' + JSON.stringify(data));
                     done();
                 }
-                console.log('success: ' + JSON.stringify(item));
-            });
-        }).catch(function (test) {
-            console.log('fail: ' + JSON.stringify(test));
+            ).catch(function (error) {
+                    console.log('fail 2: ' + JSON.stringify(error));
+                    done();
+                });
+        }).catch(function (error) {
+            console.log('fail 1: ' + JSON.stringify(error));
             done();
         });
     });

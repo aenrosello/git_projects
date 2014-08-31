@@ -1,50 +1,36 @@
 /**
  * Created by anavarro on 30/08/14.
  */
-var ObjectID = require('mongodb').ObjectID;
+var Promise = require('bluebird');
+
+/**
+ * Database connection
+ */
+var DB;
 
 CollectionDriver = function (db) {
-    this.db = db;
+    DB = db;
 };
 
-CollectionDriver.prototype.getCollection = function (collectionName, callback) {
-    this.db.collection(collectionName, function (error, the_collection) {
-        if (error)
-            callback(error);
-        else
-            callback(null, the_collection);
+CollectionDriver.prototype.findAll = function (collectionName, options) {
+    return new Promise(function (resolve, reject) {
+        DB.collection(collectionName).find({}, options).toArray(function (error, results) {
+            if (error) {
+                throw reject(error);
+            }
+            resolve(results);
+        });
     });
 };
-
-CollectionDriver.prototype.findAll = function (collectionName, callback) {
-    this.getCollection(collectionName, function (error, the_collection) { //A
-        if (error) callback(error);
-        else {
-            the_collection.find().toArray(function (error, results) { //B
-                if (error)
-                    callback(error);
-                else
-                    callback(null, results);
-            });
-        }
-    });
-};
-
-CollectionDriver.prototype.get = function (collectionName, id, callback) { //A
-    this.getCollection(collectionName, function (error, the_collection) {
-        if (error) callback(error);
-        else {
-            var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$"); //B
-            if (!checkForHexRegExp.test(id))
-                callback({error: "invalid id"});
-            else
-                the_collection.findOne({'_id': ObjectID(id)}, function (error, doc) { //C
-                    if (error)
-                        callback(error);
-                    else
-                        callback(null, doc);
-                });
-        }
+CollectionDriver.prototype.get = function (collectionName, key, options) {
+    return new Promise(function (resolve, reject) {
+        DB.collection(collectionName).findOne(key, options, function (error, doc) {
+            if (error) {
+                console.error('Error getting data!!!')
+                throw reject(error);
+            }
+            resolve(doc);
+        });
     });
 };
 

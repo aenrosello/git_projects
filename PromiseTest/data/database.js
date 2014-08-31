@@ -5,13 +5,25 @@ var Promise = require('bluebird');
 var mongodb = require('mongodb');
 
 var MongoClient = mongodb.MongoClient;
-var Collection = mongodb.Collection;
-var Cursor = mongodb.Cursor;
 
-Promise.promisifyAll(MongoClient);
+//Promise.promisifyAll(MongoClient);
 
-exports.getOneAsync = function () {
-    return MongoClient.connectAsync('mongodb://localhost:27017/test')
+exports.getConnection = function () {
+    return new Promise(function (resolve, reject) {
+        MongoClient.connect('mongodb://localhost:27017/test', function (err, db) {
+            if (err) {
+                console.error('Error!!!')
+                throw reject(err);
+            }
+            console.log('Connected!!!')
+            resolve(db);
+
+        });
+    });
+};
+
+/*exports.getOneAsync = function () {
+ return MongoClient.connectAsync('mongodb://localhost:27017/test')
         .then(function (db) {
             console.log("Connected to MongoDB");
             return new Promise(function (resolve, reject) {
@@ -39,4 +51,4 @@ exports.getAllAsync = function (options) {
                 });
             });
         });
-};
+ };*/
