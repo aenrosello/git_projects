@@ -4,6 +4,7 @@
 var Promise = require('bluebird');
 var logger = require('../loggerConfig/logger')
 var log = logger.LOG
+var path = require('path')
 /**
  * Database connection
  */
@@ -22,7 +23,8 @@ CollectionDriver.prototype.findAll = function (collectionName, options) {
             log.fatal('test logger fatal')
             log.error('test logger error')
             log.warn('test logger warn')
-            log.info('test logger info')
+            var tst = module.filename.slice(__filename.lastIndexOf(path.sep) + 1, module.filename.length - 3)
+            log.info(tst + ' test logger info')
             log.debug('test logger info')
             resolve(results);
         });
