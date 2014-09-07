@@ -2,7 +2,8 @@
  * Created by anavarro on 30/08/14.
  */
 var Promise = require('bluebird');
-
+var logger = require('../loggerConfig/logger')
+var log = logger.LOG
 /**
  * Database connection
  */
@@ -18,6 +19,11 @@ CollectionDriver.prototype.findAll = function (collectionName, options) {
             if (error) {
                 throw reject(error);
             }
+            log.fatal('test logger fatal')
+            log.error('test logger error')
+            log.warn('test logger warn')
+            log.info('test logger info')
+            log.debug('test logger info')
             resolve(results);
         });
     });
