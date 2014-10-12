@@ -18,6 +18,8 @@
     <string name="pref_unit_key">unit</string>
     <string name="pref_unit">Unit</string>
     <string name="pref_unit_default">metric</string>
+    <string name="preferred_location">Location</string>
+    <string name="action_share">Share</string>
 
     <string-array name="pref_unit_entries">
         <item>Metric</item>
