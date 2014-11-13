@@ -11,7 +11,7 @@ import java.util.Set;
 
 import data.WeatherDBHelper;
 
-import static data.LocationContract.LocationEntry;
+import static data.WeatherContract.LocationEntry;
 import static data.WeatherContract.WeatherEntry;
 
 /**
